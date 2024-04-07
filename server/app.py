@@ -21,7 +21,7 @@ api = Api(app)
 class Restaurants(Resource):
     def get(self):
         try:
-            restaurants = [restaurant.to_dict() for restaurant in Restaurant.query]
+            restaurants = [restaurant.to_dict(only=("id", "address", "name" )) for restaurant in Restaurant.query]
             return restaurants, 200
         except Exception as e:
             return {"message": str(e)}, 404
